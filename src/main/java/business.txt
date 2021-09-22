@@ -1,0 +1,79 @@
+//todo
+Project1:  mai multe tari   -- country
+    - o tara poate avea mai multe orase   --  city
+        - un oras poate avea mai multe companii   -- company
+            - o companie poate avea mai multi angajati   -- employee
+
+
+                sa nu uitam sa adaugam security cu o pagina de login
+
+
+ProjectApi: sa nu uitam sa expunem niste date din alta aplicatie, sa apelam din project 1 si sa aducem datele aici si sa le afisam
+
+ProjectSpa: sa nu uitam sa facem baza unui proiect SPA (single page app) si apelam api-ul anterior
+
+
+
+
+//todo:
+- country -- am pus 50 cractere la nume -> sa nu uit sa pun validare cand o sa fac save incat sa nu depaseasca 50 caractere
+
+
+ Pasi
+ - project managerul (PM) -- stabileste sedintele cu clientul, organizeaza sedinte in echipa, factureaza
+        - o prima sedinta: de cunoastere a clientului, afli si deadlineul
+        - o a doua sedinta: de lamurire cerinte  (aici vine si BA-ul, vine si un arhitect - exp >10)
+        - alta sedinta: o sedinta de explicatii, intrebari
+        - alta sedinta: plan (taskuri, pe ce servere o sa stea app, cu ce alte tooluri se integreaza app, cu ce tehnologii o dezvoltam)
+        - alta sedinta: estimare timp si cost  => 300 MD (man day - zile de om de lucru)  20 sept - 1 martie  (100 zile calendaristice)
+                    300 MD  x 500 euro = 150.000 euro
+                 minus craciun, concedii, neprevazute => 70 zile calendaristice =>  4-5 oameni ca sa ma incadrez in termen
+                    - la estimare poti sa ai si un factor de risc (unele taskuri nu le intelegi bine sau nu poti estima complexitatea lor)
+                            - estimare task raport 15 x 1.5  =  22.5 MD
+        - PM- ul da oferta clientului si daca e de acord se semneaza contractul
+        - anterior semnarii contractului -> minicontract -> 4 MD -> machetele (mock-ups, design)
+
+ - business analistul (BA) va scrie taskurile dupa ce s-a intalnit cu clientul de mai multe ori si a inteles businessul
+
+
+
+ JIRA:
+ BACKLOG                          TO DEVELOP                  IN PROGRESS               IN REVIEW        DONE                CLIENT
+ T1 - proiectului start - 3        T1...T10                     T1 - Alex               T3 - Alex        T5-Mihai            T1...T10
+ T2 - deployment - 11                                           T2 - Mihai
+ T3 - login - 6
+ T4 - security two-factor
+ T5
+ ...
+ T100
+
+- SPRINT: unitate de masura (de timp) pe care vom imparti dezvoltarea proiectului:  ex sprint de 2 saptamani
+- PM sedinta de GROOMING  -> ce taskuri vom lua in cele 2 saptamani :  T1,T2,T3...T10  -> sprint 1
+        - se estimeaza taskurile : uneori in MD, uneori in SP (story points)
+- PM sedinta de review -> in ce punct am ajuns cu taskurile
+- echipa deployeaza aplicatia (o duce pe un server de test) pana la punctul la care s-a dezvoltat:  www.auto.ro/test
+- clientul testeaza (da feedback)   ->   nu mai vreau buton rosu, vreau verde:  CHANGE REQUEST (CR)
+        - estimare CR -> cost suplimentar, lungirea termenului de predare proiect
+        adaptabilitate, flexibilitate, agilitate  =>  AGILE   vs   WATERFALL (20 sept - 1 martie : sedinta cu clientul doar la 1 martie)
+                Agile, Agile Scrum Master, Agile Kanban, Agile vs Waterfall
+
+ PM cu echipa: sedinte STAND-UP / DAILY: ce a facut ieri, ce fac azi, ce probleme am intampinat
+ PAIR PROGRAMMING - lucru in echipa
+ MOB PROGRAMMING - toata echipa codeaza doar la un calculator
+
+ - dezvoltam arhitectura BD
+ - implementare
+
+
+ instala GIT: pe serverul  companiei noastre:      PROJECT1 -> branch  Master
+                                                            -> PRJ - 1
+
+
+ Master
+ PRJ - 1   ->  il aduc la mine local pe calculator  -> dezvolt cod
+               -> codul trebuie dus pe branchul remote  -> COMMIT and PUSH
+               -> codul a ajuns pe PRJ - 1 pe server,  trebuie sa-l duc in Master pe server (dar cu acordul colegilor)
+                        -> deschid un PULL REQUEST   -> deschide o cerere de ducere a codului in MASTER (review)
+                                -> asignez colegi pe acest PR , ei se uita, comenteaza, eu fixez iar local comentariile, iar duc codul pe server
+                                        -> iar se uita colegii,  dau APPROVE
+                                            -> eu pot acum sa MERGE-uiesc  branchul in MASTER
