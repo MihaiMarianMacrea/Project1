@@ -3,6 +3,16 @@
 <head th:replace="fragments/head :: myHead"></head>
 
 <body>
+<div class="wrapper">
+    <nav th:replace="fragments/sidebar :: sidebar"></nav>
+    <div id="content">
+        <nav th:replace="fragments/navbar :: navbar"></nav>
 
+        <div class="page-content">
+            Acasa
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

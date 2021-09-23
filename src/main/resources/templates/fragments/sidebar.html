@@ -1,0 +1,26 @@
+<nav id="sidebar" th:fragment="sidebar">
+    <div class="sidebar-header">
+        <h3>Company Management</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a th:href="@{/country}">Country</a>
+        </li>
+        <li class="active">
+            <a th:href="@{/city/all}">City</a>
+        </li>
+        <li class="active">
+            <a th:href="@{/company}">Company</a>
+        </li>
+        <li class="active">
+            <a th:href="@{/employee}">Employee</a>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a th:href="@{/home}" class="article">Home</a>
+        </li>
+    </ul>
+</nav>

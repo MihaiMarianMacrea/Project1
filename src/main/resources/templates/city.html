@@ -4,64 +4,74 @@
 
 
 <body>
-<h1>List of Cities</h1>
-<hr>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New City</button>
+<div class="wrapper">
+    <nav th:replace="fragments/sidebar :: sidebar"></nav>
+    <div id="content">
+        <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Population</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="city:${cities}">
-        <td th:text="${city.id}"></td>
-        <td th:text="${city.name}"></td>
-        <td th:text="${city.population}"></td>
-    </tr>
-    </tbody>
-</table>
+        <div class="page-content">
+            <h1>List of Cities</h1>
+            <hr>
 
-<hr>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New City</button>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form th:object="${cityModel}" th:action="@{/city/save}" method="post">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="name" th:field="*{name}">
-                            <div class="error" th:errors="*{name}" style="color:red"></div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Population</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="city:${cities}">
+                    <td th:text="${city.id}"></td>
+                    <td th:text="${city.name}"></td>
+                    <td th:text="${city.population}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <form th:object="${cityModel}" th:action="@{/city/save}" method="post">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}">
+                                    <div class="error" th:errors="*{name}" style="color:red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="population" class="col-form-label">Population:</label>
+                                    <input type="number" class="form-control" id="population" th:field="*{population}"></input>
+                                    <div class="error" th:errors="*{population}" style="color:red"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="population" class="col-form-label">Population:</label>
-                            <input type="number" class="form-control" id="population" th:field="*{population}"></input>
-                            <div class="error" th:errors="*{population}" style="color:red"></div>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save</button>
-                </div>
+
+                    </div>
+                </form>
+
             </div>
-
         </div>
-    </form>
+    </div>
 
 </div>
-
-
 
 </body>
 
@@ -71,5 +81,6 @@
     if (errorElement.length > 0) {
         $('#addModal').modal('show');
     }
+
 </script>
 </html>
