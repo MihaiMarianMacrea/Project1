@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head th:replace="fragments/head :: myHead"></head>
 
 
@@ -35,7 +35,7 @@
 
             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <form th:object="${cityModel}" th:action="@{/country/save}" method="post">
+                <form th:object="${countryModel}" th:action="@{/country/save}" method="post">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">

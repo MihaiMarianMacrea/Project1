@@ -1,12 +1,19 @@
 package ro.mihaimacrea.Project1.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CompanyModel {
 
     private Long id;
@@ -15,6 +22,11 @@ public class CompanyModel {
     private String description;
     private Long revenues;
     private Boolean isActive;
-    private LocalDateTime incorporationDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate incorporationDate;
+
+    private Long cityId;
+    private String cityName;
+    private String countryName;
 }

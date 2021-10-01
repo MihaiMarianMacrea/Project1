@@ -19,12 +19,13 @@ import javax.validation.Valid;
 @RequestMapping("/country")
 @RequiredArgsConstructor
 public class CountryController {
+
     @NonNull
     private final CountryService countryService;
 
     @GetMapping("/all")
     public String getCountries(Model model) {
-        model.addAttribute("countryes", countryService.getCountries());
+        model.addAttribute("countries", countryService.getCountries());
         model.addAttribute("countryModel", new CountryModel());
         return "country";
     }
@@ -33,7 +34,7 @@ public class CountryController {
     public String saveCountry(Model model, @Valid @ModelAttribute CountryModel countryModel,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("contries", countryService.getCountries());
+            model.addAttribute("countries", countryService.getCountries());
             return "country";
         }
         countryService.save(countryModel);

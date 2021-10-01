@@ -22,4 +22,7 @@ public class CityModel {
     //  https://www.baeldung.com/spring-mvc-custom-validator
     private Long population; //vreau ca populatia sa fie intre 30.000 si 100.000 si sa fie multiplu de 30
 
+    private Long countryId;
+
+    private String countryName;
 }

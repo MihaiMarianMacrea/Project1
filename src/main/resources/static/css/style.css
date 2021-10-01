@@ -13,3 +13,11 @@
         tr:nth-child(even) {
           background-color: #dddddd;
         }
+
+.green-color {
+    color:green;
+}
+
+.red-color {
+    color:red;
+}

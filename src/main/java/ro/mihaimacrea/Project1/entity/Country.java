@@ -20,6 +20,5 @@ public class Country {
     private Long id;
     private String name;
 
-    @OneToMany
-    private City city;
+
 }

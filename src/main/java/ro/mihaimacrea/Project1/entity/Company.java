@@ -1,12 +1,20 @@
 package ro.mihaimacrea.Project1.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Company {
 
     @Id
@@ -17,7 +25,7 @@ public class Company {
     private String description;
     private Long revenues;
     private Boolean isActive;  // atentie ->  boolean vs Boolean la generarea de getteri setteri
-    private LocalDateTime incorporationDate;
+    private LocalDate incorporationDate;
     @ManyToOne
     private City city;
 
