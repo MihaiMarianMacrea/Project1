@@ -1,11 +1,17 @@
 package ro.mihaimacrea.Project1.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
     @Id
@@ -17,7 +23,6 @@ public class Employee {
     private String email;
     private Integer salary;
     private Boolean isActive;
-    @ManyToOne
-    private Company company;
+
 
 }

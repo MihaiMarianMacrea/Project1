@@ -11,7 +11,6 @@ import ro.mihaimacrea.Project1.repositories.CityRepository;
 import ro.mihaimacrea.Project1.repositories.CompanyRepository;
 
 import javax.transaction.Transactional;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class CompanyService {
     @Autowired
     private CityRepository cityRepository;
 
-    public List<CompanyModel> getCompanyes() {
+    public List<CompanyModel> getCompanies() {
         return companyRepository.findByOrderByCityCountryNameAscNameAsc() //company -> city -> country
                 .stream()
                 .map(company -> CompanyMapper.entityToModel(company)).collect(Collectors.toList());

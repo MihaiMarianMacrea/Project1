@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head th:replace="fragments/head :: myHead"></head>
 
 
@@ -14,7 +14,8 @@
             <h1>List of Employees</h1>
             <hr>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New Employee</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New Employee
+            </button>
 
             <table class="table">
                 <thead>
@@ -25,6 +26,9 @@
                     <th>Email</th>
                     <th>Salary</th>
                     <th>IsActive</th>
+                    <th>Company</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,10 +41,46 @@
                     <td>
                         <span th:class="${employee.isActive == true ? 'fa-solid fa-circle-check green-color' :
                          'fa-solid fa-circle-xmark red-color'}"></span>
+                    </td>
+                    <td>
+                        <ul>
+                            <li  th:each="companyName: ${employee.allCompanyNames}">
+                                <span th:text="${companyName}"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a class="btn btn-success btn-sm" th:href="@{/employee/edit/__${employee.id}__}">
+                            <span class="fa fa-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <button data-toggle="modal" th:attr="data-target='#deleteModal-' + ${employee.id}" class="btn btn-danger btn-sm">
+                            <span class="fa fa-trash"></span>
+                        </button>
+
+                        <div class="modal fade" th:id="|deleteModal-${employee.id}|" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                <span th:text="|Esti sigur ca vrei sa stergi employee ${employee.name}|"></span>
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NU</button>
+                                            <a th:href="@{/employee/delete/__${employee.id}__}" class="btn btn-success">DA</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                        </div>
 
                     </td>
-
-
                 </tr>
                 </tbody>
             </table>
@@ -49,7 +89,7 @@
 
             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
-                <form th:object="${employeeModel}" th:action="@{/employee/save}" method="post">
+                <form th:object="${employeeModel}" th:action="@{/employee/save/0}" method="post">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -70,34 +110,42 @@
                                            th:field="*{age}"></input>
                                     <div class="error" th:errors="*{age}" style="color:red"></div>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="email" class="col-form-label">Email:</label>
-                                        <input type="text" class="form-control" id="email" th:field="*{email}">
-                                        <div class="error" th:errors="*{email}" style="color:red"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="salary" class="col-form-label">Salary:</label>
-                                        <input type="number" class="form-control" id="salary"
-                                               th:field="*{revenues}"></input>
-                                        <div class="error" th:errors="*{salary}" style="color:red"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="active" class="col-form-label">Active:</label>
-                                        <input id="active" type="checkbox" th:field="*{isActive}"/>
-                                    </div>
-
+                                <div class="form-group">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input type="text" class="form-control" id="email" th:field="*{email}">
+                                    <div class="error" th:errors="*{email}" style="color:red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="salary" class="col-form-label">Salary:</label>
+                                    <input type="number" class="form-control" id="salary"
+                                           th:field="*{salary}"></input>
+                                    <div class="error" th:errors="*{salary}" style="color:red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="active" class="col-form-label">Active:</label>
+                                    <input id="active" type="checkbox" th:field="*{isActive}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="company" class="col-form-label">Company:</label>
+                                    <select multiple="multiple" class="form-control" id="company" th:field="*{companyIds}">
+                                        <option th:each="company: ${companies}" th:value="${company.id}" >
+                                            <span th:text="${company.name} "></span>
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-success">Save</button>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </form>
 
             </div>
+
+
         </div>
     </div>
 
@@ -111,6 +159,7 @@
     if (errorElement.length > 0) {
         $('#addModal').modal('show');
     }
+
 
 </script>
 </html>

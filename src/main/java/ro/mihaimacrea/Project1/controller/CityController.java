@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ro.mihaimacrea.Project1.entity.Country;
 import ro.mihaimacrea.Project1.model.CityModel;
 import ro.mihaimacrea.Project1.service.CityService;
 import ro.mihaimacrea.Project1.service.CountryService;

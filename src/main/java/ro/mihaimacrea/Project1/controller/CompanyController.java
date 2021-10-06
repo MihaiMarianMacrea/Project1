@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ro.mihaimacrea.Project1.model.CityModel;
 import ro.mihaimacrea.Project1.model.CompanyModel;
-import ro.mihaimacrea.Project1.model.CountryModel;
 import ro.mihaimacrea.Project1.service.CityService;
 import ro.mihaimacrea.Project1.service.CompanyService;
-import ro.mihaimacrea.Project1.service.CountryService;
 
 import javax.validation.Valid;
 
@@ -31,7 +28,7 @@ public class CompanyController {
 
     @GetMapping("/all")
     public String getCompanies (Model model) {
-        model.addAttribute("companyes", companyService.getCompanyes());
+        model.addAttribute("companyes", companyService.getCompanies());
         model.addAttribute("cities", cityService.getCities());
         model.addAttribute("companyModel", new CompanyModel());
         return "company";
@@ -41,7 +38,7 @@ public class CompanyController {
     public String saveCity(Model model, @Valid @ModelAttribute CompanyModel companyModel,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("companyes",  companyService.getCompanyes());
+            model.addAttribute("companyes",  companyService.getCompanies());
             model.addAttribute("cities", cityService.getCities());
             return "company";
         }

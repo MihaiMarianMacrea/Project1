@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head :: myHead"></head>
+
+
+<body>
+
+<div class="wrapper">
+    <nav th:replace="fragments/sidebar :: sidebar"></nav>
+    <div id="content">
+        <nav th:replace="fragments/navbar :: navbar"></nav>
+
+        <div class="page-content">
+
+            <form th:object="${employeeModel}" th:action="@{/employee/save/__${employeeId}__}" method="post">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit employee</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" th:field="*{name}">
+                                <div class="error" th:errors="*{name}" style="color:red"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="age" class="col-form-label">Age:</label>
+                                <input type="number" class="form-control" id="age"
+                                       th:field="*{age}"></input>
+                                <div class="error" th:errors="*{age}" style="color:red"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" id="email" th:field="*{email}">
+                                <div class="error" th:errors="*{email}" style="color:red"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="salary" class="col-form-label">Salary:</label>
+                                <input type="number" class="form-control" id="salary"
+                                       th:field="*{salary}"></input>
+                                <div class="error" th:errors="*{salary}" style="color:red"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="active" class="col-form-label">Active:</label>
+                                <input id="active" type="checkbox" th:field="*{isActive}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="company" class="col-form-label">Company:</label>
+                                <select multiple="multiple" class="form-control" id="company" th:field="*{companyIds}">
+                                    <option th:each="company: ${companies}" th:value="${company.id}">
+                                        <span th:text="${company.name} "></span>
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/employee/all}"  class="btn btn-secondary" data-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript" th:inline="javascript">
+
+    let errorElement = $('.error');
+    if (errorElement.length > 0) {
+        $('#addModal').modal('show');
+    }
+
+
+
+</script>
+</html>

@@ -3,7 +3,6 @@ package ro.mihaimacrea.Project1.validator;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ro.mihaimacrea.Project1.entity.City;
 import ro.mihaimacrea.Project1.model.CityModel;
 
 @Component
